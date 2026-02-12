@@ -1,8 +1,35 @@
 import { getDb } from "../db/database";
 import { getSet } from "./rebrickable";
 
-const UPC_ITEM_DB_BASE = "https://api.upcitemdb.com/prod/trial/lookup";
+const UPC_ITEM_DB_TRIAL_ENDPOINT = "https://api.upcitemdb.com/prod/trial/lookup";
+const UPC_ITEM_DB_PAID_ENDPOINT = "https://api.upcitemdb.com/prod/v1/lookup";
 const setNumPattern = /\b(\d{4,6}(?:-\d)?)\b/;
+
+type UpcConfig = {
+  endpoint: string;
+  headers: HeadersInit;
+};
+
+function getUpcConfig(): UpcConfig {
+  const userKey = process.env.UPCITEMDB_KEY?.trim();
+  if (!userKey) {
+    return {
+      endpoint: UPC_ITEM_DB_TRIAL_ENDPOINT,
+      headers: {
+        Accept: "application/json"
+      }
+    };
+  }
+
+  return {
+    endpoint: UPC_ITEM_DB_PAID_ENDPOINT,
+    headers: {
+      Accept: "application/json",
+      user_key: userKey,
+      key_type: process.env.UPCITEMDB_KEY_TYPE?.trim() || "3scale"
+    }
+  };
+}
 
 function getCachedBarcode(barcode: string): string | null {
   const db = getDb();
@@ -25,7 +52,10 @@ function cacheBarcode(barcode: string, setNum: string, source = "upcitemdb"): vo
 }
 
 async function fetchSetNumFromUpcItemDb(barcode: string): Promise<string | null> {
-  const response = await fetch(`${UPC_ITEM_DB_BASE}?upc=${encodeURIComponent(barcode)}`);
+  const config = getUpcConfig();
+  const response = await fetch(`${config.endpoint}?upc=${encodeURIComponent(barcode)}`, {
+    headers: config.headers
+  });
   if (!response.ok) {
     throw new Error(`UPCitemdb request failed (${response.status})`);
   }

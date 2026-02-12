@@ -45,6 +45,10 @@ Install dependencies:
 bun install
 ```
 
+## Detailed Setup Guides
+
+- [API keys + iOS phone setup](docs/API_KEYS_AND_IOS_SETUP.md)
+
 ## Run in Development
 
 Run API and web app together:
