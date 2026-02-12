@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@lego/shared": "workspace:*",
-    "hono": "^4.7.2"
+    "hono": "^4.7.2",
+    "tesseract.js": "^5.1.1"
   }
 }
