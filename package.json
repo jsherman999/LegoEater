@@ -1,0 +1,13 @@
+{
+  "name": "legoeater",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "echo 'Use bun run --filter @lego/api dev and bun run --filter @lego/web dev'",
+    "build": "echo 'Build scripts are package specific'",
+    "start": "echo 'Start scripts are package specific'"
+  }
+}

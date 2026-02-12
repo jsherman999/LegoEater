@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #f7f7f7 0%, #ffffff 100%);
+  color: #111827;
+  font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}

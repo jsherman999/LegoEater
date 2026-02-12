@@ -1,0 +1,13 @@
+{
+  "name": "@lego/api",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --watch src/index.ts",
+    "start": "bun src/index.ts"
+  },
+  "dependencies": {
+    "@lego/shared": "workspace:*",
+    "hono": "^4.7.2"
+  }
+}

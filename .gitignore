@@ -1,0 +1,10 @@
+node_modules
+bun.lockb
+.env
+.DS_Store
+data/*.db
+data/*.db-*
+data/*.log
+dist
+coverage
+*.tsbuildinfo
