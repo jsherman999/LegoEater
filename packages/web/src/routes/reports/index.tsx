@@ -13,7 +13,7 @@ function ReportsPage() {
   const topSetsQuery = useTopSetsReport(20);
 
   if (byMemberQuery.isLoading || byThemeQuery.isLoading || trendQuery.isLoading) {
-    return <p className="text-gray-600">Loading reports...</p>;
+    return <div className="skeleton h-24 rounded-xl" />;
   }
 
   return (

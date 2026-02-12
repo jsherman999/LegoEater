@@ -6,8 +6,10 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "echo 'Use bun run --filter @lego/api dev and bun run --filter @lego/web dev'",
-    "build": "echo 'Build scripts are package specific'",
-    "start": "echo 'Start scripts are package specific'"
+    "dev": "sh -c 'bun run --filter @lego/api dev & bun run --filter @lego/web dev & wait'",
+    "build": "bun run --filter @lego/web build",
+    "start": "NODE_ENV=production bun run --filter @lego/api start",
+    "cli": "bun run --filter @lego/cli dev",
+    "cli:link": "bun run --filter @lego/cli link"
   }
 }

@@ -13,7 +13,7 @@ function DashboardPage() {
   const trendsQuery = useTrendReport(90);
 
   if (summaryQuery.isLoading) {
-    return <p className="text-gray-600">Loading dashboard...</p>;
+    return <div className="skeleton h-24 rounded-xl" />;
   }
 
   if (summaryQuery.error || !summaryQuery.data) {

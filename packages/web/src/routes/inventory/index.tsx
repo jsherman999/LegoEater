@@ -57,7 +57,7 @@ function InventoryPage() {
         </select>
       </div>
 
-      {inventoryQuery.isLoading ? <p className="text-gray-600">Loading inventory...</p> : null}
+      {inventoryQuery.isLoading ? <div className="skeleton h-16 rounded-xl" /> : null}
       {inventoryQuery.error ? (
         <p className="rounded border border-red-200 bg-red-50 p-3 text-sm text-red-700">
           {inventoryQuery.error instanceof Error ? inventoryQuery.error.message : "Failed to load inventory"}

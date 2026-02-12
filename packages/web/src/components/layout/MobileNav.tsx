@@ -14,7 +14,7 @@ export function MobileNav() {
   });
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 border-t border-gray-200 bg-white px-2 py-2">
+    <nav className="safe-bottom fixed bottom-0 left-0 right-0 border-t border-gray-200 bg-white/95 px-2 py-2 backdrop-blur">
       <ul className="mx-auto flex max-w-4xl items-center justify-between">
         {links.map((link) => {
           const active = pathname === link.to;
@@ -22,7 +22,7 @@ export function MobileNav() {
             <li key={link.to}>
               <Link
                 to={link.to}
-                className={`rounded-md px-3 py-2 text-sm font-semibold ${active ? "bg-red-100 text-red-700" : "text-gray-600"}`}
+                className={`rounded-md px-3 py-2 text-sm font-semibold ${active ? "bg-red-600 text-white shadow" : "text-gray-600"}`}
               >
                 {link.label}
               </Link>

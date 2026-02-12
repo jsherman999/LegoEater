@@ -6,6 +6,7 @@ import { apiClient } from "../../lib/api-client";
 import { useDeleteInventory, useInventoryItem, useUpdateInventory, type InventoryCondition } from "../../hooks/useInventory";
 import { usePriceHistory } from "../../hooks/usePrices";
 import { SetPriceHistoryChart } from "../../components/reports/SetPriceHistoryChart";
+import { useToast } from "../../components/ui/ToastProvider";
 
 type Member = { id: number; name: string };
 type Location = { id: number; name: string };
@@ -24,6 +25,7 @@ function InventoryDetailPage() {
   const updateMutation = useUpdateInventory(setId);
   const deleteMutation = useDeleteInventory();
   const historyQuery = usePriceHistory(detailQuery.data?.setNum ?? "", 90);
+  const { pushToast } = useToast();
 
   const membersQuery = useQuery({
     queryKey: ["members"],
@@ -58,7 +60,7 @@ function InventoryDetailPage() {
   }, [detailQuery.data]);
 
   if (detailQuery.isLoading) {
-    return <p className="text-gray-600">Loading set detail...</p>;
+    return <div className="skeleton h-24 rounded-xl" />;
   }
 
   if (detailQuery.error || !detailQuery.data) {
@@ -125,6 +127,9 @@ function InventoryDetailPage() {
             purchasePrice: purchasePrice ? Number(purchasePrice) : null,
             dateAcquired: dateAcquired || null,
             notes: notes || null
+          }, {
+            onSuccess: () => pushToast("Inventory entry updated."),
+            onError: () => pushToast("Unable to save changes.", "error")
           });
         }}
       >
@@ -237,7 +242,11 @@ function InventoryDetailPage() {
             onClick={() => {
               deleteMutation.mutate(setId, {
                 onSuccess: () => {
+                  pushToast("Set removed.");
                   navigate({ to: "/inventory" });
+                },
+                onError: () => {
+                  pushToast("Unable to delete set.", "error");
                 }
               });
             }}

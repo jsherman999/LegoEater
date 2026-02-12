@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { apiClient } from "../../lib/api-client";
 import { useCreateInventory, type InventoryCondition } from "../../hooks/useInventory";
+import { useToast } from "../ui/ToastProvider";
 
 type SetFormProps = {
   setNum: string;
@@ -37,6 +38,7 @@ export function SetForm({ setNum, onCreated }: SetFormProps) {
   });
 
   const createInventory = useCreateInventory();
+  const { pushToast } = useToast();
 
   const errorMessage = useMemo(() => {
     if (!createInventory.error) {
@@ -65,7 +67,11 @@ export function SetForm({ setNum, onCreated }: SetFormProps) {
           },
           {
             onSuccess: (response) => {
+              pushToast("Set added to inventory.");
               onCreated?.(response.id);
+            },
+            onError: () => {
+              pushToast("Unable to add set.", "error");
             }
           }
         );
