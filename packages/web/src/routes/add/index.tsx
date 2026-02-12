@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { createRoute } from "@tanstack/react-router";
+import { createRoute, useNavigate } from "@tanstack/react-router";
 import { rootRoute } from "../__root";
 import { BarcodeScanner } from "../../components/scanner/BarcodeScanner";
 import { PhotoCapture } from "../../components/scanner/PhotoCapture";
@@ -19,6 +19,7 @@ type TabKey = (typeof tabs)[number]["key"];
 function AddPage() {
   const [activeTab, setActiveTab] = useState<TabKey>("barcode");
   const [manualSetNum, setManualSetNum] = useState("");
+  const navigate = useNavigate();
 
   const barcodeLookup = useBarcodeLookup();
   const ocrLookup = useOcrLookup();
@@ -116,7 +117,12 @@ function AddPage() {
               <p className="text-sm text-gray-600">Parts: {setResult.numParts ?? "Unknown"}</p>
             </div>
           </div>
-          <SetForm setNum={setResult.setNum} />
+          <SetForm
+            setNum={setResult.setNum}
+            onCreated={(id) => {
+              navigate({ to: "/inventory/$setId", params: { setId: String(id) } });
+            }}
+          />
         </article>
       ) : null}
     </section>

@@ -4,6 +4,7 @@ import { indexRoute } from "./routes/index";
 import { settingsRoute } from "./routes/settings/index";
 import { addRoute } from "./routes/add/index";
 import { inventoryRoute } from "./routes/inventory/index";
+import { setDetailRoute } from "./routes/inventory/$setId";
 import { reportsRoute } from "./routes/reports/index";
 
 const routeTree = rootRoute.addChildren([
@@ -11,6 +12,7 @@ const routeTree = rootRoute.addChildren([
   settingsRoute,
   addRoute,
   inventoryRoute,
+  setDetailRoute,
   reportsRoute
 ]);
 
