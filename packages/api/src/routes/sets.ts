@@ -109,6 +109,10 @@ setsRoute.get("/sets", (c) => {
     items: rows.map((row) => {
       const latestPrice = row.latest_avg_price === null ? null : Number(row.latest_avg_price);
       const quantity = Number(row.quantity);
+      const purchasePrice = row.purchase_price === null ? null : Number(row.purchase_price);
+      const marketValue = latestPrice === null ? null : latestPrice * quantity;
+      const investedValue = purchasePrice === null ? null : purchasePrice * quantity;
+      const gainLoss = marketValue !== null && investedValue !== null ? marketValue - investedValue : null;
       return {
         id: Number(row.id),
         setNum: String(row.set_num),
@@ -122,11 +126,12 @@ setsRoute.get("/sets", (c) => {
         locationName: row.location_name === null ? null : String(row.location_name),
         condition: String(row.condition),
         quantity,
-        purchasePrice: row.purchase_price === null ? null : Number(row.purchase_price),
+        purchasePrice,
         dateAcquired: row.date_acquired === null ? null : String(row.date_acquired),
         notes: row.notes === null ? null : String(row.notes),
         latestPrice,
-        marketValue: latestPrice === null ? null : latestPrice * quantity,
+        marketValue,
+        gainLoss,
         createdAt: String(row.created_at),
         updatedAt: String(row.updated_at)
       };
@@ -186,6 +191,10 @@ setsRoute.get("/sets/:id", (c) => {
 
   const latestPrice = row.latest_avg_price === null ? null : Number(row.latest_avg_price);
   const quantity = Number(row.quantity);
+  const purchasePrice = row.purchase_price === null ? null : Number(row.purchase_price);
+  const marketValue = latestPrice === null ? null : latestPrice * quantity;
+  const investedValue = purchasePrice === null ? null : purchasePrice * quantity;
+  const gainLoss = marketValue !== null && investedValue !== null ? marketValue - investedValue : null;
 
   return c.json({
     id: Number(row.id),
@@ -201,11 +210,12 @@ setsRoute.get("/sets/:id", (c) => {
     locationName: row.location_name === null ? null : String(row.location_name),
     condition: String(row.condition),
     quantity,
-    purchasePrice: row.purchase_price === null ? null : Number(row.purchase_price),
+    purchasePrice,
     dateAcquired: row.date_acquired === null ? null : String(row.date_acquired),
     notes: row.notes === null ? null : String(row.notes),
     latestPrice,
-    marketValue: latestPrice === null ? null : latestPrice * quantity,
+    marketValue,
+    gainLoss,
     createdAt: String(row.created_at),
     updatedAt: String(row.updated_at)
   });

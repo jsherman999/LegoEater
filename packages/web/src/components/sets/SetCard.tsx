@@ -45,6 +45,12 @@ export function SetCard({ item }: SetCardProps) {
             {item.marketValue === null ? "N/A" : `$${item.marketValue.toFixed(2)}`}
           </p>
         </div>
+        <div className="rounded bg-gray-50 px-2 py-1">
+          <p className="text-gray-500">Gain/Loss</p>
+          <p className={`font-semibold ${item.gainLoss !== null && item.gainLoss >= 0 ? "text-green-700" : "text-red-700"}`}>
+            {item.gainLoss === null ? "N/A" : `${item.gainLoss >= 0 ? "+" : "-"}$${Math.abs(item.gainLoss).toFixed(2)}`}
+          </p>
+        </div>
       </div>
     </Link>
   );

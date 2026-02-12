@@ -90,12 +90,22 @@ function InventoryDetailPage() {
             <p className="font-semibold">{item.year ?? "Unknown"}</p>
           </div>
           <div className="rounded bg-gray-50 p-2">
+            <p className="text-gray-500">Latest Price (Each)</p>
+            <p className="font-semibold">{item.latestPrice === null ? "N/A" : `$${item.latestPrice.toFixed(2)}`}</p>
+          </div>
+          <div className="rounded bg-gray-50 p-2">
             <p className="text-gray-500">Market Value</p>
             <p className="font-semibold text-green-700">{item.marketValue === null ? "N/A" : `$${item.marketValue.toFixed(2)}`}</p>
           </div>
           <div className="rounded bg-gray-50 p-2">
             <p className="text-gray-500">Purchase Price</p>
             <p className="font-semibold">{item.purchasePrice === null ? "N/A" : `$${item.purchasePrice.toFixed(2)}`}</p>
+          </div>
+          <div className="rounded bg-gray-50 p-2">
+            <p className="text-gray-500">Gain/Loss</p>
+            <p className={`font-semibold ${item.gainLoss !== null && item.gainLoss >= 0 ? "text-green-700" : "text-red-700"}`}>
+              {item.gainLoss === null ? "N/A" : `${item.gainLoss >= 0 ? "+" : "-"}$${Math.abs(item.gainLoss).toFixed(2)}`}
+            </p>
           </div>
         </div>
       </div>

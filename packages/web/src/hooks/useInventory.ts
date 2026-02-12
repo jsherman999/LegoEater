@@ -21,6 +21,7 @@ export type InventoryItem = {
   notes: string | null;
   latestPrice: number | null;
   marketValue: number | null;
+  gainLoss: number | null;
   createdAt: string;
   updatedAt: string;
 };

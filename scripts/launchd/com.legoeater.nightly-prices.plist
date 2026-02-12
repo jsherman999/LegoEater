@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.legoeater.nightly-prices</string>
+
+    <key>ProgramArguments</key>
+    <array>
+      <string>bun</string>
+      <string>run</string>
+      <string>/Users/jay/lego/scripts/nightly-prices.ts</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/jay/lego</string>
+
+    <key>StartCalendarInterval</key>
+    <dict>
+      <key>Hour</key>
+      <integer>3</integer>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
+
+    <key>StandardOutPath</key>
+    <string>/Users/jay/lego/data/nightly-prices.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/jay/lego/data/nightly-prices.log</string>
+
+    <key>RunAtLoad</key>
+    <false/>
+  </dict>
+</plist>
