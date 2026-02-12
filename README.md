@@ -58,13 +58,13 @@ bun run dev
 ```
 
 Default URLs:
-- API: `http://localhost:3000`
-- Web: `http://localhost:5173`
+- API: `http://localhost:3999`
+- Web: `http://localhost:5999`
 
 Health check:
 
 ```bash
-curl http://localhost:3000/api/health
+curl http://localhost:3999/api/health
 ```
 
 ## Build and Start (Production Mode)

@@ -19,8 +19,8 @@ BRICKLINK_TOKEN_VALUE=
 BRICKLINK_TOKEN_SECRET=
 UPCITEMDB_KEY=
 UPCITEMDB_KEY_TYPE=3scale
-API_PORT=3000
-WEB_PORT=5173
+API_PORT=3999
+WEB_PORT=5999
 DATABASE_PATH=data/legoeater.db
 ```
 
@@ -107,10 +107,10 @@ Use this for normal browsing, inventory CRUD, and reports.
 4. Start web bound to LAN with API URL pointing at the Mac IP:
    ```bash
    cd /Users/jay/lego
-   VITE_API_URL=http://<MAC_LAN_IP>:3000/api bun run --filter @lego/web dev -- --host 0.0.0.0 --port 5173
+   VITE_API_URL=http://<MAC_LAN_IP>:3999/api bun run --filter @lego/web dev -- --host 0.0.0.0 --port 5999
    ```
 5. On iPhone Safari, open:
-   `http://<MAC_LAN_IP>:5173`
+   `http://<MAC_LAN_IP>:5999`
 
 ## 6.2 Camera/scanning on iOS (recommended: HTTPS)
 
@@ -123,7 +123,7 @@ Recommended flow:
    bun run build
    bun run start
    ```
-2. Expose `http://localhost:3000` through an HTTPS tunnel (for example Cloudflare Tunnel, ngrok, or equivalent).
+2. Expose `http://localhost:3999` through an HTTPS tunnel (for example Cloudflare Tunnel, ngrok, or equivalent).
 3. Open the generated `https://...` URL on iPhone.
 4. Grant camera permission when prompted.
 

@@ -46,7 +46,7 @@ if (isProduction) {
 
 app.get("/", (c) => c.json({ app: "LegoEater API", status: "ok" }));
 
-const port = Number(process.env.API_PORT ?? 3000);
+const port = Number(process.env.API_PORT ?? 3999);
 
 if (import.meta.main) {
   Bun.serve({

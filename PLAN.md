@@ -314,9 +314,9 @@ Create `~/Library/LaunchAgents/com.legoeater.nightly-prices.plist`:
 
 **Verify**:
 - `bun install` succeeds
-- API on :3000, `curl /api/health` returns OK
+- API on :3999, `curl /api/health` returns OK
 - CRUD members/locations via curl works
-- Web app loads on :5173, Settings page functional
+- Web app loads on :5999, Settings page functional
 
 ---
 

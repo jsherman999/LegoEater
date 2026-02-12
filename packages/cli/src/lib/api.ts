@@ -1,4 +1,4 @@
-const API_BASE = process.env.LEGO_API_URL ?? "http://localhost:3000/api";
+const API_BASE = process.env.LEGO_API_URL ?? "http://localhost:3999/api";
 
 export async function apiRequest<T>(path: string, init?: RequestInit): Promise<T> {
   const response = await fetch(`${API_BASE}${path}`, init);
