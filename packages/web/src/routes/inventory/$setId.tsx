@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { rootRoute } from "../__root";
 import { apiClient } from "../../lib/api-client";
 import { useDeleteInventory, useInventoryItem, useUpdateInventory, type InventoryCondition } from "../../hooks/useInventory";
+import { usePriceHistory } from "../../hooks/usePrices";
+import { SetPriceHistoryChart } from "../../components/reports/SetPriceHistoryChart";
 
 type Member = { id: number; name: string };
 type Location = { id: number; name: string };
@@ -21,6 +23,7 @@ function InventoryDetailPage() {
   const detailQuery = useInventoryItem(setId);
   const updateMutation = useUpdateInventory(setId);
   const deleteMutation = useDeleteInventory();
+  const historyQuery = usePriceHistory(detailQuery.data?.setNum ?? "", 90);
 
   const membersQuery = useQuery({
     queryKey: ["members"],
@@ -248,6 +251,8 @@ function InventoryDetailPage() {
           <p className="text-sm text-red-700">{updateMutation.error instanceof Error ? updateMutation.error.message : "Save failed"}</p>
         ) : null}
       </form>
+
+      <SetPriceHistoryChart items={historyQuery.data?.items ?? []} />
     </section>
   );
 }

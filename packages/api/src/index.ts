@@ -7,6 +7,7 @@ import { locationsRoute } from "./routes/locations";
 import { lookupRoute } from "./routes/lookup";
 import { setsRoute } from "./routes/sets";
 import { pricesRoute } from "./routes/prices";
+import { reportsRoute } from "./routes/reports";
 
 const app = new Hono();
 
@@ -19,6 +20,7 @@ app.route("/api", locationsRoute);
 app.route("/api", lookupRoute);
 app.route("/api", setsRoute);
 app.route("/api", pricesRoute);
+app.route("/api", reportsRoute);
 
 app.get("/", (c) => c.json({ app: "LegoEater API", status: "ok" }));
 
